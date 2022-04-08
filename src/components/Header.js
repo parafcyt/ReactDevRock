@@ -2,10 +2,11 @@ import React from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import logodev from "../assets/statics/logo-devrock.png";
+import "../assets/css/Header.css";
 
 export default function Header() {
   return (
-    <div>
+    <div className="header">
       <Navbar bg="dark" variant="dark">
         <Container>
           <Navbar.Brand href="#home">
