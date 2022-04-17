@@ -22,6 +22,7 @@ export default function Home() {
           {productos.map((unProducto) => {
             return (
               <div key={unProducto.id}>
+                {/* el elemento más externo tiene un key único, uso el id */}
                 <TarjetaProducto {...unProducto}></TarjetaProducto>
               </div>
             );

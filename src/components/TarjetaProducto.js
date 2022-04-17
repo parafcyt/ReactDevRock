@@ -3,11 +3,12 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import "../assets/css/children.css";
 import Contexto from "../context/Contexto";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function TarjetaProducto(props) {
   //guardo lo que me pasan por props
   const { nombre, descripcion, img, precio, id } = props;
+  console.log(props.id + "imprimo props.id");
   const { agregarACarrito, detalleProducto } = useContext(Contexto);
 
   return (
@@ -19,7 +20,9 @@ export default function TarjetaProducto(props) {
               variant="top"
               src={img}
               className="img"
+              // onClick={() => detalleProducto({ id })}
               onClick={() => detalleProducto({ id })}
+              // paso un objeto js con un id dentro, como lo definí en el initialState
             />
           </Link>
         </div>

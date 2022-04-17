@@ -1,6 +1,6 @@
 import React from "react";
 import "../../src/assets/css/App.css";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "../components/Layout";
 import Home from "../containers/Home";
 import Carrito from "../containers/Carrito";

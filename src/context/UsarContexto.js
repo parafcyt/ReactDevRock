@@ -26,28 +26,59 @@ export default function UsarContexto(props) {
     dispatch({ type: "CARGAR_PRODUCTOS", payload: res.data });
     //console.log(estado, "escribo estado");
   };
-  const agregarACarrito = (unItem) => {
-    console.log("entro a agregar a carrito el producto id: " + unItem.id);
-    dispatch({ type: "AGREGAR_A_CARRITO", payload: unItem.id });
+  const agregarACarrito = (unObjetoId) => {
+    console.log("entro a agregar a carrito el producto id: " + unObjetoId.id);
+    dispatch({ type: "AGREGAR_A_CARRITO", payload: unObjetoId.id });
+    console.log(
+      "El objeto guardado en carrito antes del dispatch " + unObjetoId.id
+    );
   };
 
-  const detalleProducto = (unItem) => {
-    console.log("entro a detalle Producto del item:" + unItem.id);
-    dispatch({ type: "DETALLE_PRODUCTO", payload: unItem.id });
+  const detalleProducto = (unObjetoId) => {
+    console.log("IMPRIMO unItem desde detalleProducto" + unObjetoId);
+    console.log("entro a detalle Producto del item:" + unObjetoId.id);
+    dispatch({ type: "DETALLE_PRODUCTO", payload: unObjetoId.id });
   };
 
-  //const eliminarDeCarrito;
+  const totalProdEnCarrito = () => {
+    let totalProd;
+
+    if (state.carrito.length > 0) {
+      totalProd = state.carrito.reduce((acu, valorActual) => {
+        return acu + valorActual.cantidad;
+      }, 0);
+    }
+    console.log(totalProd);
+
+    return totalProd;
+  };
+
+  const eliminarDeCarrito = (unId) => {
+    dispatch({ type: "ELIMINAR_DE_CARRITO", payload: unId });
+  };
+
+  const eliminarUnoDeCarrito = (unId) => {
+    dispatch({ type: "ELIMINAR_UNO_DE_CARRITO", payload: unId });
+  };
+
+  const sumarCantidadACarrito = (unId) => {
+    dispatch({ type: "SUMAR_CANTIDAD_A_CARRITO", payload: unId });
+  };
 
   return (
     <Contexto.Provider
       value={{
         productos: state.productos,
         productoElegido: state.productoElegido,
+        carrito: state.carrito,
         //productosCarrito: estadoInicial.productosCarrito,
         detalleProducto,
         getProductos,
         agregarACarrito,
-        //eliminarDeCarrito,
+        eliminarDeCarrito,
+        totalProdEnCarrito,
+        eliminarUnoDeCarrito,
+        sumarCantidadACarrito,
       }}
     >
       {children}
